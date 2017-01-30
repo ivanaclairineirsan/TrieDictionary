@@ -11,31 +11,39 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 /**
  *
  * @author ivana
  */
 public class TrieDictionary {
+    
+    Dictionary dictionary = new Dictionary();
 
     /**
      * @param args the command line arguments
      */
-     public List<String> readFile(String filePath) throws FileNotFoundException, IOException{
-        List<String> strings = new ArrayList<>();
+     public void readAndProcessFile(String filePath) throws FileNotFoundException, IOException{
         try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
             String line;
             while ((line = br.readLine()) != null) {
-                // process the line.
+                dictionary.insert(line);
+                System.out.println(line);
             }
         }
-         return null;
-
     }
+
+     
     
-    public static void main(String[] args) {
-        Dictionary dictionary = new Dictionary();
-        List<String> words = readFile("dictionary.txt");
+    public static void main(String[] args) throws IOException {
+        TrieDictionary treeDictionary = new TrieDictionary();
+        treeDictionary.readAndProcessFile("dictionary.txt");
+        Scanner in = new Scanner(System.in);
+        System.out.print("Cari kata: ");
+        String keyword = in.nextLine();
+            
+        System.out.println("Kata kunci: " + keyword + ", isFound?: "+ treeDictionary.dictionary.search(keyword));
     }
     
 }

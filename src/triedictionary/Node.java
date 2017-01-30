@@ -5,6 +5,8 @@
  */
 package triedictionary;
 
+import java.util.HashMap;
+
 /**
  *
  * @author ivana
