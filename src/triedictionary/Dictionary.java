@@ -25,6 +25,7 @@ public class Dictionary {
             if (string.length()==1 && roots.get(string.charAt(0)).endOfWord) {
                 return true;
             }
+            System.out.println("Node huruf: " + string.charAt(0));
             return searchFor(string.substring(1),roots.get(string.charAt(0)));
         } else {
             return false;
@@ -73,6 +74,7 @@ public class Dictionary {
         }
 
         if (node.children.containsKey(string.charAt(0))) {
+            System.out.println("Node huruf: " + string.charAt(0));
             return searchFor(string.substring(1),node.children.get(string.charAt(0)));
         } else {
             return false;

@@ -28,7 +28,7 @@ public class TrieDictionary {
         try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
             String line;
             while ((line = br.readLine()) != null) {
-                dictionary.insert(line);
+                dictionary.insert(line.toLowerCase());
                 System.out.println(line);
             }
         }
@@ -39,11 +39,18 @@ public class TrieDictionary {
     public static void main(String[] args) throws IOException {
         TrieDictionary treeDictionary = new TrieDictionary();
         treeDictionary.readAndProcessFile("dictionary.txt");
+       
         Scanner in = new Scanner(System.in);
-        System.out.print("Cari kata: ");
-        String keyword = in.nextLine();
-            
-        System.out.println("Kata kunci: " + keyword + ", isFound?: "+ treeDictionary.dictionary.search(keyword));
+        System.out.print("Cari kata? (Y/N): ");
+        String option = in.nextLine();
+        
+        if(option.equals("Y"))
+        {
+            System.out.print("Masukkan kata: ");
+            String keyword = in.nextLine();
+            System.out.println("Kata kunci: " + keyword + ", isFound?: "+ treeDictionary.dictionary.search(keyword.toLowerCase()));
+        }
+        
     }
     
 }
